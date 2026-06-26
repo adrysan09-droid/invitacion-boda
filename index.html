@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel & Olga — ¡Estás invitado!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES Y PALETA --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --verde-salvia: #7D8E7B;
+            --verde-oscuro: #5B6B59;
+            --crema-fondo: #FDFBF7;
+            --crema-oscuro: #F4F1EA;
+            --blanco-tarjeta: #FFFFFF;
+            --dorado-acento: #D4AF37;
+            --texto-oscuro: #333333;
+            --texto-suave: #666666;
+            --borde: #EAE7E0;
+            --rojo-eliminar: #d9534f;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--crema-fondo);
+            color: var(--texto-oscuro);
+            line-height: 1.8;
+            padding-bottom: 60px;
+        }
+
+        .container { max-width: 700px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- PORTADA / HERO --- */
+        header {
+            text-align: center;
+            padding: 90px 20px;
+            background-color: var(--verde-salvia);
+            color: white;
+            border-bottom: 6px solid var(--dorado-acento);
+        }
+        header .enlace-boda { 
+            font-size: 1rem; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            margin-bottom: 15px; 
+            opacity: 0.9; 
+            font-weight: 500;
+        }
+        header h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3.8rem; 
+            font-weight: 400; 
+            margin-bottom: 15px; 
+            line-height: 1.2; 
+        }
+        header .fecha-boda { 
+            font-family: 'Playfair Display', serif; 
+            font-style: italic; 
+            font-size: 1.5rem; 
+            opacity: 0.95; 
+        }
+
+        /* --- SECCIONES --- */
+        .seccion {
+            background-color: var(--blanco-tarjeta);
+            padding: 50px 40px;
+            margin-top: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--borde);
+            text-align: center;
+        }
+        @media (max-width: 480px) { .seccion { padding: 40px 20px; } }
+        .seccion h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--verde-salvia); margin-bottom: 20px; font-weight: 400; }
+        .divisor-dorado { width: 60px; height: 2px; background-color: var(--dorado-acento); margin: 0 auto 25px auto; }
+
+        /* --- IMÁGENES --- */
+        .imagen-principal { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 30px; }
+
+        /* --- DETALLES --- */
+        .bloque-detalle { 
+            background-color: var(--crema-fondo); 
+            padding: 30px; 
+            border-radius: 12px; 
+            border: 1px solid var(--borde); 
+            margin-top: 20px;
+        }
+        .bloque-detalle h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--texto-oscuro); margin-bottom: 15px; }
+        .bloque-detalle p { font-size: 1rem; color: var(--texto-suave); margin-bottom: 5px; }
+
+        /* --- FORMULARIO Y BLOQUES DINÁMICOS --- */
+        form { text-align: left; margin-top: 20px; }
+        
+        .bloque-familia {
+            background-color: var(--crema-oscuro);
+            border: 2px solid var(--verde-salvia);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .bloque-familia label { color: var(--verde-oscuro); font-size: 1rem; font-weight: 600; }
+
+        .bloque-invitado {
+            background-color: var(--crema-fondo);
+            border: 1px solid var(--borde);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            border-left: 4px solid var(--dorado-acento);
+            transition: all 0.3s ease;
+        }
+
+        /* Cabecera del bloque invitado (Título + Botón Eliminar) */
+        .cabecera-invitado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed var(--borde);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+        }
+        
+        .cabecera-invitado h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--verde-salvia);
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+
+        .btn-eliminar {
+            background: none;
+            border: none;
+            color: var(--rojo-eliminar);
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .btn-eliminar:hover { text-decoration: underline; color: #a94442; }
+
+        .control-formulario { margin-bottom: 15px; }
+        .control-formulario label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--texto-oscuro); text-transform: uppercase; }
+        .control-formulario input, .control-formulario select, .control-formulario textarea { 
+            width: 100%; padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; 
+            border: 1px solid #ccc; border-radius: 6px; background-color: #fff; 
+        }
+        .control-formulario input:focus, .control-formulario select:focus { outline: none; border-color: var(--verde-salvia); }
+
+        /* --- BOTONES DE ENVÍO --- */
+        .botones-container { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+        
+        .btn-add {
+            background-color: transparent;
+            color: var(--verde-salvia);
+            border: 2px dashed var(--verde-salvia);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-add:hover { background-color: var(--crema-oscuro); }
+
+        .btn-submit {
+            background-color: var(--verde-salvia);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .btn-submit:hover { background-color: var(--verde-oscuro); }
+
+        /* --- PIE DE PÁGINA --- */
+        footer { text-align: center; margin-top: 50px; font-size: 0.85rem; color: var(--texto-suave); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="enlace-boda">¡Estás invitado a la boda de!</div>
+            <h1>Manuel & Olga</h1>
+            <div class="fecha-boda">25 de Septiembre de 2027 • Toledo</div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- BIENVENIDA GENERAL -->
+        <div class="seccion">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000&auto=format&fit=crop" alt="Boda" class="imagen-principal">
+            <h2 style="font-size: 1.8rem; color: var(--texto-oscuro);">Queremos celebrarlo contigo</h2>
+            <div class="divisor-dorado"></div>
+            <p>Hay momentos en la vida que son irrepetibles, pero compartirlos con las personas que más queremos los hace inolvidables. Por eso, nos harías muy felices si nos acompañas en nuestro gran día.</p>
+            
+            <div class="bloque-detalle">
+                <h3>Dónde y Cuándo</h3>
+                <p><strong>Sábado, 25 de Septiembre de 2027</strong></p>
+                <p>A las 18:00 h</p>
+                <p><strong>Toledo</strong></p>
+                <p style="font-size: 0.85rem; margin-top: 10px;">(Ceremonia y posterior banquete en la misma ubicación)</p>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE CONFIRMACIÓN -->
+        <div class="seccion">
+            <h2>Confirma tu Asistencia</h2>
+            <div class="divisor-dorado"></div>
+            <p style="margin-bottom: 25px; color: var(--texto-suave);">Indícanos a continuación el nombre de vuestra familia y añade a todos los asistentes.</p>
+            
+            <!-- ENLACE DE FORMSPREE: Cambia TU_ID_AQUI por el tuyo -->
+            <form action="https://formspree.io/f/mykqwnrk" method="POST">
+                
+                <!-- BLOQUE PRINCIPAL: FAMILIA -->
+                <div class="bloque-familia">
+                    <div class="control-formulario" style="margin-bottom: 0;">
+                        <label>Nombre de la Familia o Grupo</label>
+                        <input type="text" name="Familia_Principal" required placeholder="Ej. Familia García López, Amigos de la Uni...">
+                    </div>
+                </div>
+
+                <!-- CONTENEDOR DE INVITADOS DINÁMICOS -->
+                <div id="contenedor-invitados">
+                    <!-- Aquí se inyectan los invitados por JavaScript -->
+                </div>
+
+                <!-- BOTONES -->
+                <div class="botones-container">
+                    <button type="button" id="btn-add-invitado" class="btn-add">+ Añadir otro invitado de esta familia</button>
+                    
+                    <div class="control-formulario" style="margin-top: 15px;">
+                        <label>Mensaje para los novios (Opcional)</label>
+                        <textarea name="Mensaje_Global" rows="3" placeholder="¿Alguna canción que no pueda faltar?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Confirmación</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">Manuel & Olga • Hecho con todo el cariño del mundo.</div>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT AVANZADA -->
+    <script>
+        const contenedor = document.getElementById('contenedor-invitados');
+        const btnAdd = document.getElementById('btn-add-invitado');
+
+        // Función vital: Asegura que los números estén siempre en orden (1, 2, 3...)
+        // aunque elimines un invitado que estaba en medio.
+        function actualizarNumeros() {
+            const bloques = document.querySelectorAll('.bloque-invitado');
+            
+            bloques.forEach((bloque, index) => {
+                const numeroReal = index + 1;
+                
+                // Actualiza el texto visual ("Invitado 1", "Invitado 2")
+                bloque.querySelector('h4').innerText = `Invitado ${numeroReal}`;
+                
+                // Actualiza los nombres de las variables para la base de datos de Formspree
+                bloque.querySelector('.input-nombre').name = `Invitado_${numeroReal}_Nombre`;
+                bloque.querySelector('.select-asistencia').name = `Invitado_${numeroReal}_Asistencia`;
+                bloque.querySelector('.input-alergias').name = `Invitado_${numeroReal}_Alergias`;
+
+                // Oculta el botón eliminar si es el primer invitado (obligatorio)
+                const btnEliminar = bloque.querySelector('.btn-eliminar');
+                if (numeroReal === 1) {
+                    btnEliminar.style.display = 'none';
+                } else {
+                    btnEliminar.style.display = 'block';
+                }
+            });
+        }
+
+        // Función para crear la ficha de un invitado
+        function agregarInvitado() {
+            const div = document.createElement('div');
+            div.className = 'bloque-invitado';
+            
+            div.innerHTML = `
+                <div class="cabecera-invitado">
+                    <h4>Invitado</h4>
+                    <button type="button" class="btn-eliminar">❌ Eliminar</button>
+                </div>
+                
+                <div class="control-formulario">
+                    <label>Nombre y Apellidos</label>
+                    <input type="text" class="input-nombre" required placeholder="Ej. Adrián García">
+                </div>
+                
+                <div class="control-formulario">
+                    <label>¿Asistirá a la boda?</label>
+                    <select class="select-asistencia">
+                        <option value="Sí, asiste">Sí, ¡allí estaré!</option>
+                        <option value="No asiste">Lo siento, no podré ir</option>
+                    </select>
+                </div>
+
+                <div class="control-formulario">
+                    <label>Alergias o dieta especial</label>
+                    <input type="text" class="input-alergias" required placeholder="Ej. Ninguna, Vegano, Celíaco, Intolerancia a la lactosa...">
+                </div>
+            `;
+            
+            // Le damos función al botón de eliminar de esta ficha específica
+            div.querySelector('.btn-eliminar').addEventListener('click', function() {
+                div.remove(); // Borra el HTML
+                actualizarNumeros(); // Reorganiza todo
+            });
+
+            contenedor.appendChild(div);
+            actualizarNumeros(); // Actualiza al crear para ponerle el número correcto
+        }
+
+        // Al cargar la página, creamos el invitado 1 por defecto
+        agregarInvitado();
+
+        // Al pulsar el botón general, añadimos otro
+        btnAdd.addEventListener('click', agregarInvitado);
+    </script>
+</body>
+</html>
